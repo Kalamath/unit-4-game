@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Star Wars</title>
+    <style>
+        body {
+            background-color: #4f5055;
+        }
+
+        .darth-maul {
+            padding-bottom: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="col-md-12 text-center">
+        <h2 id="selChar">Select Your Character</h2>
+        <div id="characters" class="row">
+            <div class="character col-md-6" id="yourCharacter">
+                <img src="assets/images/vader.gif" class="img darth-vader">
+                <p>Darth Vader</p>
+                <p>Health: <span id="vaderhealth">130</span></p>
+                <p>Attack Power: 15</p>
+                <p>Counter: 20</p>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-success">100%</div>
+                </div>
+            </div>
+            <div class="character col-md-6" id="otherCharacter">
+                <img src="assets/images/darthMaulFlipped.gif" class="img darth-maul">
+                <br>
+                <p>Darth Maul</p>
+                <p>Health: <span id="maulhealth">100</span></p>
+                <p>Attack Power: 5</p>
+                <p>Counter: 25</p>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-success">100%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Attack Button -->
+    <div class="row">
+        <div class="col-md-4 text-center">
+            <!-- Empty Space -->
+        </div>
+        <div class="col-md-4 text-center button-container">
+            <button>Attack</button>
+        </div>
+        <div class="col-md-4 text-center">
+            <!-- Empty Space -->
+        </div>
+    </div>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+
+    // Darth Maul Health
+    var darthMaulHP = 100;
+
+    $("maulhealth").text(darthMaulHP);
+
+    var counter = 25;
+
+    // Vader's Attack
+    var vaderAttack = 30;
+
+        $("body").on("click", ".button-container button", function () {
+
+            var attackValue = ($(this).attr("counter"));
+            attackValue = parseInt(attackValue);
+
+            // Attack Message
+            alert("You did " + vaderAttack + " damage!");
+            console.log(darthMaulHP);
+
+            // Increase Attack
+            vaderAttack;
+            // decrease HP
+            darthMaulHP -= vaderAttack; 
+
+            // When you attack
+            if (darthMaulHP <= 0) {
+                alert("You Won!");
+            }
+        
+
+        });
+    </script>
+</body>
+
+</html>
