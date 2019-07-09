@@ -10,6 +10,10 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Star Wars</title>
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             background-color: #4f5055;
         }
@@ -17,16 +21,51 @@
         .darth-maul {
             padding-bottom: 30px;
         }
+
+        h6 {
+            font-size: 12px;
+        }
+
+        header {
+            margin-bottom: 0px;
+
+        }
+
+        header img {
+            width: 250px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        header h1 {
+            font-family: monospace;
+        }
+
+        .img-fluid {
+            width: 250px;
+            height: auto;
+        }
     </style>
 </head>
 
 <body>
+
+    <header>
+        <div class="row">
+            <div class="col-md-12">
+                <img src="assets/images/starwars.png" class="img-fluid" alt="starwarslogo">
+                <!-- <h6 class="text-center text-white">The Battle of the Sith</h6> -->
+            </div>
+        </div>
+    </header>
+
     <div class="col-md-12 text-center">
-        <h2 id="selChar">Select Your Character</h2>
+        <h2 id="selChar">Fight!</h2>
         <div id="characters" class="row">
             <div class="character col-md-6" id="yourCharacter">
+                <h3>Darth Vader</h3>
                 <img src="assets/images/vader.gif" class="img darth-vader">
-                <p>Darth Vader</p>
                 <p>Health: <span id="vaderhealth">130</span></p>
                 <p>Attack Power: 15</p>
                 <p>Counter: 20</p>
@@ -35,14 +74,14 @@
                 </div>
             </div>
             <div class="character col-md-6" id="otherCharacter">
+                <h3>Darth Maul</h3>
                 <img src="assets/images/darthMaulFlipped.gif" class="img darth-maul">
                 <br>
-                <p>Darth Maul</p>
                 <p>Health: <span id="maulhealth">100</span></p>
                 <p>Attack Power: 5</p>
                 <p>Counter: 25</p>
                 <div class="progress">
-                    <div class="progress-bar progress-bar-success">100%</div>
+                    <div class="progress-bar progress-bar-success villian">100%</div>
                 </div>
             </div>
         </div>
@@ -64,23 +103,29 @@
 
     <script type="text/javascript">
 
-    game = {
-        maulHP: 100
-    };
-    
-    var showMaulHP = document.getElementById("maulhealth");
-    var showVaderHP = document.getElementById("vaderhealth");
+        
 
-    // Darth Vader Health
-    var darthVaderHP = 130;
-    // Darth Maul Health
-    var darthMaulHP = 100;
+        var showMaulHP = document.getElementById("maulhealth");
+        var showVaderHP = document.getElementById("vaderhealth");
+        var showStatus = document.getElementById("selChar");
 
-    // Maul Counter
-    var counter = 25;
+        var loser = 0;
 
-    // Vader's Attack
-    var vaderAttack = 30;
+        // Darth Vader Health
+        var darthVaderHP = 130;
+        // Vader's Attack
+        var vaderAttack = 15;
+
+        // Darth Maul Health
+        var darthMaulHP = 100;
+        // Maul Counter
+        var counter = 25;
+
+        // Progress Bar
+        var villianPercent = darthMaulHP * 100 / darthMaulHP;
+        $(".progress-bar").width(darthMaulHP + "%").text(Math.round(darthMaulHP) + "%");
+
+
 
         // Attack Button Action
         $("body").on("click", ".button-container button", function () {
@@ -93,22 +138,24 @@
             showVaderHP.innerHTML = darthVaderHP;
 
             // Attack Message
-            alert("You did " + vaderAttack + " damage!");
+            showStatus.innerHTML = "You did " + vaderAttack + " damage!";
             console.log(darthMaulHP);
             console.log(darthVaderHP);
 
             // Increase Attack
-            vaderAttack;
+            vaderAttack += counter;
             // decrease HP
             darthMaulHP -= vaderAttack;
-            
+            // Hits Vader with a counter
             darthVaderHP -= counter;
 
             // Winning and Losing
-            if (darthMaulHP <= 0) {
-                alert("You Won!");
-            } 
-        
+            if (darthMaulHP > 0) {
+                alert("Attack Again!");
+            } else {
+               showStatus.innerHTML = "YOU WIN";
+            }
+
 
         });
     </script>
