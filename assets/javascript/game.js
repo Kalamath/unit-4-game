@@ -1,48 +1,55 @@
-game = {
-    maulHP: 100
-};
-
 var showMaulHP = document.getElementById("maulhealth");
-var showVaderHP = document.getElementById("vaderhealth");
+        var showVaderHP = document.getElementById("vaderhealth");
+        var showStatus = document.getElementById("selChar");
 
-// Darth Vader Health
-var darthVaderHP = 130;
-// Darth Maul Health
-var darthMaulHP = 100;
+        // Darth Vader Health
+        var darthVaderHP = 130;
+        // Vader's Attack
+        var vaderAttack = 15;
+        // Vader Counter
+        var vaderCounter = 20;
 
-// Maul Counter
-var counter = 25;
+        // Darth Maul Health
+        var darthMaulHP = 100;
+        // Maul Counter
+        var maulCounter = 25;
 
-// Vader's Attack
-var vaderAttack = 30;
+        // Progress Bar
+        var villianPercent = darthMaulHP * 100 / darthMaulHP;
+        $(".progress-bar").width(darthMaulHP + "%").text(Math.round(darthMaulHP) + "%");
 
-    // Attack Button Action
-    $("body").on("click", ".button-container button", function () {
+        // Attack Button Action
+        $("body").on("click", ".button-container button", function () {
 
-        var attackValue = ($(this).attr("counter"));
-        attackValue = parseInt(attackValue);
+            var attackValue = ($(this).attr("maulCounter"));
+            attackValue = parseInt(attackValue);
 
-        // Shows Health depleting
-        showMaulHP.innerHTML = darthMaulHP;
-        showVaderHP.innerHTML = darthVaderHP;
+            var darthMaul = $(".other-character");
 
-        // Attack Message
-        alert("You did " + vaderAttack + " damage!");
-        console.log(darthMaulHP);
-        console.log(darthVaderHP);
+            
+            // Attack Message
+            showStatus.innerHTML = "You did " + vaderAttack + " damage!";
+            console.log(darthMaulHP);
+            console.log(darthVaderHP);
+            
+            // Increase Attack
+            vaderAttack += vaderCounter;
+            // decrease HP
+            darthMaulHP -= vaderAttack;
+            // Hits Vader with a counter
+            darthVaderHP -= maulCounter;
+            
+            // Shows Health depleting
+            showMaulHP.innerHTML = darthMaulHP;
+            showVaderHP.innerHTML = darthVaderHP;
 
-        // Increase Attack
-        vaderAttack;
-        // decrease HP
-        darthMaulHP -= vaderAttack;
-        
-        darthVaderHP -= counter;
+            // Winning and Losing
+            if (darthMaulHP >= 0) {
+                console.log("Attack Again");
+            } else {
+                showStatus.innerHTML = "YOU WIN";
+                darthMaul.animate({ opacity: "0.00" });
+            }
 
-        // Winning and Losing
-        if (darthMaulHP <= 0) {
-            alert("You Won!");
-        } 
-    
 
-    });
-
+        });
