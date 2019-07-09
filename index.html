@@ -62,6 +62,9 @@
 
     <div class="col-md-12 text-center">
         <h2 id="selChar">Fight!</h2>
+            <div class="col-md-12 text-center button-container">
+                <button>Attack</button>
+            </div>
         <div id="characters" class="row">
             <div class="character col-md-6" id="yourCharacter">
                 <h3>Darth Vader</h3>
@@ -91,9 +94,6 @@
         <div class="col-md-4 text-center">
             <!-- Empty Space -->
         </div>
-        <div class="col-md-4 text-center button-container">
-            <button>Attack</button>
-        </div>
         <div class="col-md-4 text-center">
             <!-- Empty Space -->
         </div>
@@ -109,8 +109,6 @@
         var showVaderHP = document.getElementById("vaderhealth");
         var showStatus = document.getElementById("selChar");
 
-        var loser = 0;
-
         // Darth Vader Health
         var darthVaderHP = 130;
         // Vader's Attack
@@ -124,8 +122,6 @@
         // Progress Bar
         var villianPercent = darthMaulHP * 100 / darthMaulHP;
         $(".progress-bar").width(darthMaulHP + "%").text(Math.round(darthMaulHP) + "%");
-
-
 
         // Attack Button Action
         $("body").on("click", ".button-container button", function () {
@@ -143,7 +139,7 @@
             console.log(darthVaderHP);
 
             // Increase Attack
-            vaderAttack += counter;
+            vaderAttack;
             // decrease HP
             darthMaulHP -= vaderAttack;
             // Hits Vader with a counter

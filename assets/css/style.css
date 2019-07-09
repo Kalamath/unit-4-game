@@ -1,0 +1,36 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #4f5055;
+}
+
+.darth-maul {
+    padding-bottom: 30px;
+}
+
+h6 {
+    font-size: 12px;
+}
+
+header {
+    margin-bottom: 0px;
+
+}
+
+header img {
+    width: 250px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+header h1 {
+    font-family: monospace;
+}
+
+.img-fluid {
+    width: 250px;
+    height: auto;
+}
